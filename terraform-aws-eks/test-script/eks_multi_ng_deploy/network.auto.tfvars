@@ -1,0 +1,5 @@
+region = ""
+vpc_name = ""
+vpc_cidr = ""
+cluster_name = ""
+node_group_name = ""
