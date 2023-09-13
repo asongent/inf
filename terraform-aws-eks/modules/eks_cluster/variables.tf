@@ -24,3 +24,7 @@ variable "cluster_version" {
    default = ""
    description = "The desired eks cluster that the team needs. Team must make sure their desired EKS version exists"
 }
+
+variable "csi-role-name" {
+  default =""
+}

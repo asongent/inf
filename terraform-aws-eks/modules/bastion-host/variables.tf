@@ -28,3 +28,7 @@ variable "key_name" {
 variable "subnet_id" {
   description = "public subnet where the bastion host will be deployed"
 }
+
+variable "bastion-host_name" {
+  default = ""
+}

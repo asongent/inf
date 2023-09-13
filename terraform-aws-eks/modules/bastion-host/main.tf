@@ -40,7 +40,7 @@ resource "aws_instance" "bastion_host" {
   user_data              = file("user_data/data.sh")
   vpc_security_group_ids = [aws_security_group.bastion_host-sg.id]
   tags = {
-    Name = "bastion-host"
+    Name = "var.bastion-host_name"
   }
 }
 

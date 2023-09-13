@@ -1,6 +1,6 @@
 #Network Variables
 variable "region" {
-  default = "us-east-1"
+  default = ""
 }
 variable "vpc_name" {
   default = "stack_eks_cluster_VPC"
@@ -12,7 +12,7 @@ variable "vpc_cidr" {
 
 #Cluster Configuration
 variable "cluster_name" {
-  default = "stack_non-prod_cluster"
+  default = ""
 }
 variable "cluster_version" {
   type        = string
@@ -62,4 +62,22 @@ variable "key_name" {
 
 variable "aws_eks_cluster" {
   default  = ""
+}
+
+variable "csi-role-name" {
+  default = ""
+}
+
+variable "bastion-host_name" {
+  default = ""
+}
+
+###backend
+variable "dynamodb_table-name" {
+
+default = ""
+}
+
+variable "s3-bucket-name" {
+  default = ""
 }

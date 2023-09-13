@@ -103,4 +103,3 @@ resource "aws_s3_bucket_logging" "log_bucket" {
   target_prefix = "log/local.bucket_id"
 }
 
-

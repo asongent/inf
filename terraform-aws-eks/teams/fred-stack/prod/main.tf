@@ -35,6 +35,7 @@ module "eks_cluster" {
   /* private_subnet_ids = concat(module.subnet[*].private_subnet, module.subnet[*].public_subnet) #original */
   private_subnet_ids = concat(module.subnet[*].private_subnet, module.subnet[*].public_subnet) #testing
   cluster_sg_ids     = [module.eks_cluster.cluster_sg_id, module.eks_node_group.node_sg_id]
+  csi-role-name      = var.csi-role-name
 }
 
 
