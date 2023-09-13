@@ -23,7 +23,6 @@ resource "aws_subnet" "private" {
     "kubernetes.io/cluster/${var.cluster_name}" = "shared"
     "kubernetes.io/cluster/eks"                 = "shared"
     "kubernetes.io/role/internal-elb"           = 1
-    "kubernetes.io/role/elb"                    = 1
   }
 }
 

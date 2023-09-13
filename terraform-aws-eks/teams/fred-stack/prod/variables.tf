@@ -60,3 +60,6 @@ variable "key_name" {
 }
 
 
+variable "aws_eks_cluster" {
+  default  = ""
+}

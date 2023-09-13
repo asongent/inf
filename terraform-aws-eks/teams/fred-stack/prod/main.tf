@@ -32,7 +32,7 @@ module "eks_cluster" {
   node_sg            = module.eks_node_group.node_sg_id
   cluster_name       = var.cluster_name
   cluster_version    = var.cluster_version
-  /* private_subnet_ids = concat(module.subnet[*].private_subnet, module.subnet[*].public_subnet) */ #original
+  /* private_subnet_ids = concat(module.subnet[*].private_subnet, module.subnet[*].public_subnet) #original */
   private_subnet_ids = concat(module.subnet[*].private_subnet, module.subnet[*].public_subnet) #testing
   cluster_sg_ids     = [module.eks_cluster.cluster_sg_id, module.eks_node_group.node_sg_id]
 }
@@ -70,7 +70,7 @@ module "bastion-host" {
   ami              = "ami-0261755bbcb8c4a84"
 }
 
-module "ebs-csi-driver" {
+/* module "ebs-csi-driver" {
   source       = "../../../modules/ebs-csi-driver"
   cluster_name = var.cluster_name
-}
+} */
