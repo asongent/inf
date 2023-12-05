@@ -21,7 +21,7 @@ resource "aws_security_group" "bastion_host-sg" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = ["76.139.80.159/32"]
 
   }
   egress {
@@ -34,14 +34,18 @@ resource "aws_security_group" "bastion_host-sg" {
 }
 resource "aws_instance" "bastion_host" {
   instance_type          = var.instance_type
+  associate_public_ip_address = false
   subnet_id              = var.public_subnet_id
   key_name               = var.key_name
   ami                    = var.ami
   user_data              = file("user_data/data.sh")
   vpc_security_group_ids = [aws_security_group.bastion_host-sg.id]
   tags = {
-    Name = "var.bastion-host_name"
+    Name = "bastion-host"
   }
+  # depends_on = [
+  #   cluster_create_wait
+  # ]
 }
 
 /* resource "aws_iam_instance_profile" "bastion" {

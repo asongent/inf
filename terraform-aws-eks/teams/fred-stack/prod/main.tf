@@ -27,11 +27,11 @@ module "subnet" {
 }
 
 module "eks_cluster" {
-  source             = "../../../modules/eks_cluster"
-  vpc_id             = module.vpc.vpc_id
-  node_sg            = module.eks_node_group.node_sg_id
-  cluster_name       = var.cluster_name
-  cluster_version    = var.cluster_version
+  source          = "../../../modules/eks_cluster"
+  vpc_id          = module.vpc.vpc_id
+  node_sg         = module.eks_node_group.node_sg_id
+  cluster_name    = var.cluster_name
+  cluster_version = var.cluster_version
   /* private_subnet_ids = concat(module.subnet[*].private_subnet, module.subnet[*].public_subnet) #original */
   private_subnet_ids = concat(module.subnet[*].private_subnet, module.subnet[*].public_subnet) #testing
   cluster_sg_ids     = [module.eks_cluster.cluster_sg_id, module.eks_node_group.node_sg_id]
@@ -57,9 +57,26 @@ module "eks_node_group" {
 
 }
 
+module "gpu_node_group" {
+  source              = "../../../modules/gpu_node_group"
+  vpc_id              = module.vpc.vpc_id
+  cluster_sg          = module.eks_cluster.cluster_sg_id
+  cluster_name        = var.cluster_name
+  gpu_group_name      = var.gpu_group_name
+  labels              = { node = "gpu", type = "spot" }
+  ami_type            = "AL2_x86_64_GPU"
+  capacity_type       = "SPOT"
+  instance_types      = ["g5.16xlarge, g5.2xlarge, g5.24xlarge, g3.8xlarge, g3.4xlarge"]
+  gpu_desired_size    = var.gpu_desired_size
+  gpu_min_size        = var.gpu_min_size
+  gpu_max_size        = var.gpu_max_size
+  private_subnet_id   = module.subnet[*].private_subnet
+  cluster_create_wait = module.eks_cluster.endpoint
+  
+}
 
 
-
+  
 module "bastion-host" {
   source           = "../../../modules/bastion-host"
   vpc_id           = module.vpc.vpc_id

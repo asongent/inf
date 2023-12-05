@@ -35,7 +35,6 @@ variable "instance_type" {
 
 variable "bastion_host_name" {
   default = "public_ip"
-
 }
 
 ### Additional variables for node groups
@@ -52,16 +51,34 @@ variable "min_size" {
   description = "Min size for nodes in the node group"
 }
 
+### Additional variables for node groups
+## GPU
+
+variable "gpu_group_name" {
+  description = "EKS node group name"
+}
+
+variable "gpu_desired_size" {
+  type        = number
+  description = "desired node count for cluster node group"
+}
+variable "gpu_max_size" {
+  type        = number
+  description = "Max size for nodes in the node group"
+}
+variable "gpu_min_size" {
+  type        = number
+  description = "Min size for nodes in the node group"
+}
+
 
 ## Bastion Host
-
 variable "key_name" {
   default = ""
 }
 
-
 variable "aws_eks_cluster" {
-  default  = ""
+  default = ""
 }
 
 variable "csi-role-name" {
@@ -75,9 +92,14 @@ variable "bastion-host_name" {
 ###backend
 variable "dynamodb_table-name" {
 
-default = ""
+  default = ""
 }
 
 variable "s3-bucket-name" {
   default = ""
+}
+
+variable "account_id" {
+  type = number
+
 }

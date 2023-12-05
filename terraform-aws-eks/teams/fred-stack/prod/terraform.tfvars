@@ -16,12 +16,13 @@ max_size        = "16"
 min_size        = "3"
 desired_size    = "3"
 
-#3 GPU node Group Name
-# gpu_group_name   = "gpu-manage-ng"
-# gpu_max_size     = "16"
-# gpu_min_size     = "1"
-# gpu_desired_size = "1"
+#GPU node Group Name
+gpu_group_name   = "gpu-manage-ng"
+gpu_max_size     = "2"
+gpu_min_size     = "1"
+gpu_desired_size = "1"
 
 #Bastion Host Daetails
-bastion-host_name = "team-name"
+bastion-host_name = "soc-bastion"
 key_name          = "apache-keypair"
+account_id        = "843825445314"
